@@ -1,151 +1,406 @@
-#root{
-  max-width: 1100px;
-  margin:0 auto;
+
+/* =========================================
+   1. THEME VARIABLES
+========================================= */
+
+:root {
+  /* Background */
+  --bg-primary: #0B1115;
+  --bg-surface: #142329;
+  --bg-surface-hover: #1C3036;
+  --bg-image: #0F1B20;
+
+  /* Brand */
+  --color-primary: #5EEAD4;
+  --color-primary-hover: #2DD4BF;
+
+  /* Typography */
+  --text-primary: #EAF4F3;
+  --text-secondary: #A2B5B9;
+  --text-muted: #718A90;
+
+  /* Borders */
+  --border-color: #2A4148;
+  --border-hover: #5EEAD4;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Layout */
+  --container-width: 1100px;
+
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   2. GLOBAL LAYOUT
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+#root {
+  max-width: var(--container-width);
+  margin: 0 auto;
   padding: 40px 24px;
 }
 
-header{
+/* =========================================
+   3. HEADER / PROFILE
+========================================= */
+
+header {
   padding: 80px 0 60px;
 }
 
-header h1{
-  font-size:3.5rem;
-  margin-top:0;
+header h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  color: var(--color-primary);
 }
 
-header h2{
-  margin-top: 8px 0 20px;
-  font-size: 1.5rem;
-  font-weight:normal;
-  color:#555;
+header h2 {
+  margin: 16px 0 20px;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--text-primary);
 }
 
-header p{
-  max-width:600px;
-  line-height:1.6;
-  color:#555;
+header p {
+  max-width: 600px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
 }
 
-section{
-  margin-top: 40px;
+/* Profile links */
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
 }
 
-section >h2{
-  font-size:2rem;
-  margin-bottom:30px;
+.profile-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 20px;
+
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+
+  color: var(--color-primary);
+  background: transparent;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: background 0.2s ease,
+              color 0.2s ease,
+              transform 0.2s ease;
 }
 
-
-
-article{
-  margin-top:30px;
+.profile-links a:hover {
+  background: var(--color-primary);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
 }
 
-article img{
-  max-width: 100%;
-  height:auto;
-  border-radius:10px;
+/* =========================================
+   4. PROJECTS SECTION
+========================================= */
+
+.project-section {
+  padding: 40px 0 80px;
 }
 
-/*profile Properties */
-.profile-links{
-  display:flex;
-  gap:12px;
-  margin-top:24px;
+.section-heading {
+  margin-bottom: 28px;
 }
 
-.profile-links a{
-  padding:10px 16px;
-  border:1px solid #333;
-  border-radius:8px;
-  text-decoration:none;
-  color:#333;
-  font-weight:bold;
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
 }
 
-.profile-links a:hover{
-  background-color: #333;
-  color:white;
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--text-primary);
 }
 
+/* =========================================
+   5. PROJECT NAVIGATION
+========================================= */
 
-/*project Properties */
-
-.project-card{
-  background-color:white;
-  border: 1px solid #ddd;
-  border-radius:12px;
-  overflow:hidden;
-  max-width:700px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+.project-nav {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 5px 2px 15px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
 }
 
-.project-card img{
-  display:block;
-  width:100%;
-  height: 350px; 
-  object-fit:contain;
-  background-color: #f5f5f5;
+.project-nav button {
+  flex: 0 0 auto;
+
+  padding: 13px 20px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+
+  background: transparent;
+  color: var(--text-secondary);
+
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: background 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease;
 }
 
-.project-info{
-  padding:24px;
+.project-nav button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
-.project-info h3{
-  margin-top:0;
-  font-size: 1.5rem;
+.project-nav button.selected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--bg-primary);
+  font-weight: 600;
 }
 
-.project-actions{
-  margin-top:20px;
+.project-nav button.selected:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--bg-primary);
 }
 
-.project-grid{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:30px;
+/* =========================================
+   6. PROJECT DETAILS
+========================================= */
+
+.project-detail {
+  margin-top: 20px;
+  padding: 36px;
+
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
 }
 
-/*for mobile project-grid properties*/
-@media(max-width:700px){
-  .project-grid{
-    grid-template-columns:1fr;
+.project-detail > p:first-child {
+  margin: 0 0 12px;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: var(--color-primary);
+}
+
+.project-detail h3 {
+  margin: 0 0 16px;
+
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+
+  color: var(--text-primary);
+}
+
+.project-detail > p {
+  max-width: 750px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* =========================================
+   7. MAIN SCREENSHOT
+========================================= */
+
+.main-image-wrapper {
+  margin-top: 30px;
+
+  background: var(--bg-image);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+
+  overflow: hidden;
+}
+
+.main-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+/* =========================================
+   8. SCREENSHOT GALLERY
+========================================= */
+
+.gallery-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin: 24px 0 12px;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+
+  color: var(--text-muted);
+}
+
+.image-gallery {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+
+  padding: 4px 2px 14px;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.image-gallery button {
+  flex: 0 0 125px;
+
+  padding: 4px;
+
+  background: var(--bg-image);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+
+  transition: border-color 0.2s ease,
+              opacity 0.2s ease,
+              transform 0.2s ease;
+}
+
+.image-gallery button:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.image-gallery button.selected {
+  border-color: var(--color-primary);
+}
+
+.image-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+/* =========================================
+   9. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 700px) {
+  #root {
+    padding: 24px 18px;
+  }
+
+  header {
+    padding: 55px 0 35px;
+  }
+
+  header h1 {
+    letter-spacing: -0.8px;
+  }
+
+  header h2 {
+    font-size: 1.1rem;
+  }
+
+  .project-section {
+    padding: 30px 0 60px;
+  }
+
+  .project-nav button {
+    padding: 11px 16px;
+    font-size: 0.8rem;
+  }
+
+  .project-detail {
+    padding: 20px;
+  }
+
+  .image-gallery button {
+    flex-basis: 95px;
+  }
+
+  .gallery-heading {
+    font-size: 0.65rem;
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-/*tech-stack properties*/
-.tech-stack{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin: 20px 0;
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
-
-.tech-stack span{
-  border:1px solid #ccc;
-  border-radius:20px;
-  padding:6px 12px;
-  font-size:0.85rem;
-}
-
-/*project-link properties */
-.project-link{
- display: inline-block;
- padding: 10px 16px;
- border: 1px solid #333;
- border-radius: 8px;
- text-decoration:none;
- color:#333;
- font-weight:bold;
-}
-
-.project-link:hover{
-  background-color: #333;
-  color:white;
-}
-
-
-
-
